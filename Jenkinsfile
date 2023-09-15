@@ -3,10 +3,11 @@ String workspace = "/opt/jenkins/workspace"
 
 //Pipeline
 pipeline {
-    // agent { node {  label "master"   //指定运行节点的标签或者名称
+    agent any
+    // { node {  label "master"   //指定运行节点的标签或者名称
     //               customWorkspace "${workspace}"   //指定运行工作目录（可选）
     //         }
-    }
+    // }
 
     options {
         timestamps()  //日志会有时间
@@ -24,7 +25,10 @@ pipeline {
                     script{ //填写运行代码
                         println('获取代码')
                         println("${test}")
-                        
+                        sh "
+                        git --version
+                        node -v
+                        "
                         // input id: 'Test', message: '我们是否要继续？', ok: '是，继续吧！', parameters: [choice(choices: ['a', 'b'], description: '', name: 'test1')], submitter: 'lizeyang,admin'
                     }
                 }
