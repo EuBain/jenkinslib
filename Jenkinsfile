@@ -29,6 +29,8 @@ pipeline {
                         git --version
                         node -v
                         ""
+                        input id: '1', message: '你准备好了吗？', ok: '是的', parameters: [choice(choices: ['232', '333'], description: '''你有毛病
+我没毛病''', name: '1')]
                         // input id: 'Test', message: '我们是否要继续？', ok: '是，继续吧！', parameters: [choice(choices: ['a', 'b'], description: '', name: 'test1')], submitter: 'lizeyang,admin'
                     }
                 }
