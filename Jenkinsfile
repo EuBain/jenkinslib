@@ -9,7 +9,7 @@ pipeline {
     //         }
     // }
 
-    tools { nodejs 'node'}
+    tools { nodejs "node"}
     options {
         timestamps()  //日志会有时间
         skipDefaultCheckout()  //删除隐式checkout scm语句
