@@ -9,6 +9,7 @@ pipeline {
     //         }
     // }
 
+    tools { nodejs 'node'}
     options {
         timestamps()  //日志会有时间
         skipDefaultCheckout()  //删除隐式checkout scm语句
@@ -19,14 +20,15 @@ pipeline {
     stages {
         //下载代码
         stage("GetCode"){ //阶段名称
-            // when { environment name: 'test', value: 'abcd' }
+
             steps{  //步骤
                 timeout(time:5, unit:"MINUTES"){   //步骤超时时间
                     script{ //填写运行代码
                         println('获取代码')
                         // println("${test}")
                         sh ""
-                        git -v
+                        git version
+                        node -v
                         ""
                         input id: '1', message: '你准备好了吗？', ok: '是的', parameters: [choice(choices: ['232', '333'], description: '''你有毛病
 我没毛病''', name: '1')]
