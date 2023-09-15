@@ -24,7 +24,7 @@ pipeline {
                 timeout(time:5, unit:"MINUTES"){   //步骤超时时间
                     script{ //填写运行代码
                         println('获取代码')
-                        println("${test}")
+                        // println("${test}")
                         sh ""
                         git --version
                         node -v
@@ -47,7 +47,7 @@ pipeline {
                                 println('应用打包')
                                 
                                 // mvnHome = tool "m2"
-                                println(mvnHome)
+                                // println(mvnHome)
                                 
                                 // sh "${mvnHome}/bin/mvn --version"
                             }
