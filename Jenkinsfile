@@ -25,8 +25,10 @@ pipeline {
                     script{ //填写运行代码
                         println('获取代码')
                         // println("${test}")
-                        sh """git version
-                        node -v"""
+                        sh """
+                        git version
+                        node -v
+                        """
                         
                         input id: '1', message: '你准备好了吗？', ok: '是的', parameters: [choice(choices: ['232', '333'], description: '''你有毛病
 我没毛病''', name: '1')]
