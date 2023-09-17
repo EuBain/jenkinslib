@@ -39,14 +39,16 @@ pipeline {
                         timeout(time:20, unit:"MINUTES"){
                             script{
                                 println('应用打包')
-                                def customImage = docker.build("nginx_tayrsi:1.0")
-                                customImage.inside {
-                                    sh 'make test'
-                                }
                                 // mvnHome = tool "m2"
                                 // println(mvnHome)
-                                
                                 // sh "${mvnHome}/bin/mvn --version"
+                                node {
+                                    checkout scm
+                                    def customImage = docker.build("nginx_tayrsi:1.0")
+                                    customImage.inside {
+                                        sh 'make test'
+                                    }
+                                }
                             }
                         }
                     }
