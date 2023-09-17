@@ -59,7 +59,7 @@ pipeline {
                     //启动容器
                     sh """ docker run -p 80:80 --name nginx_tayrsi -d nginx_tayrsi:1.0
                            pwd
-                           docker cp /home/docker_map/jenkins/ssl/tayrsi.cn* nginx_tayrsi:/etc/ssl/tayrsi
+                           docker cp /var/jenkins_home/ssl/tayrsi.cn* nginx_tayrsi:/etc/ssl/tayrsi
                            docker start nginx_tayrsi
                            """
                 }
