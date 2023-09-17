@@ -19,29 +19,19 @@ pipeline {
     stages {
         //下载代码
         stage("git"){ //阶段名称
-
             steps{  //步骤
                 timeout(time:5, unit:"MINUTES"){   //步骤超时时间
                     script{ //填写运行代码
                         println('获取代码')
-                        // println("${test}")
-                        dir ("${env.WORKSPACE}/project") {
-                            sh 'pwd'
-                        }
-                        sh 'pwd'
-                        sh """
-                        git version
-                        docker -v
-                        """
                         git credentialsId: 'GitHubSSH', url: 'git@github.com:EuBain/tayrsi.git'
                     }
                 }
             }
         }
 
-        stage("01"){
-            failFast true
-            parallel {
+        // stage("01"){
+        //     failFast true
+        //     parallel {
         
                 //构建
                 stage("Build"){
@@ -49,7 +39,10 @@ pipeline {
                         timeout(time:20, unit:"MINUTES"){
                             script{
                                 println('应用打包')
-                                
+                                def customImage = docker.build("nginx_tayrsi:1.0")
+                                customImage.inside {
+                                    sh 'make test'
+                                }
                                 // mvnHome = tool "m2"
                                 // println(mvnHome)
                                 
@@ -59,21 +52,21 @@ pipeline {
                     }
                 }
         
-                //代码扫描
-                stage("CodeScan"){
-                    steps{
-                        timeout(time:30, unit:"MINUTES"){
-                            script{
-                                print("代码扫描")
+                // //代码扫描
+                // stage("CodeScan"){
+                //     steps{
+                //         timeout(time:30, unit:"MINUTES"){
+                //             script{
+                //                 print("代码扫描")
 
-                                print("this is my lib!")
-                            }
-                        }
-                    }
-                }
+                //                 print("this is my lib!")
+                //             }
+                //         }
+                //     }
+                // }
             }
-        }
-    }
+        // }
+    // }
 
     //构建后操作
     post {
