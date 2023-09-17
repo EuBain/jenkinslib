@@ -33,38 +33,38 @@ pipeline {
         //     failFast true
         //     parallel {
         
-                //构建
-                stage("Build"){
-                    steps{
-                        timeout(time:20, unit:"MINUTES"){
-                            script{
-                                println('应用打包')
-                                // mvnHome = tool "m2"
-                                // println(mvnHome)
-                                // sh "${mvnHome}/bin/mvn --version"
-                                sh """
-                                pwd
-                                docker build -t nginx_tayrsi:1.0 .
-                                """
-                                
-                                }
-                            }
-                        }
-                    }
-                 //启动
-                stage('Run'){
-                    steps {
-                        script {
-                            //启动容器
-                            sh ' docker run -p 80:80 --name nginx_tayrsi -d nginx_tayrsi:1.0'
+        //构建
+        stage("Build"){
+            steps{
+                timeout(time:20, unit:"MINUTES"){
+                    script{
+                        println('应用打包')
+                        // mvnHome = tool "m2"
+                        // println(mvnHome)
+                        // sh "${mvnHome}/bin/mvn --version"
+                        sh """
+                        pwd
+                        docker build -t nginx_tayrsi:1.0 .
+                        """
+                        
                         }
                     }
                 }
+            }
+            //启动
+        stage('Run'){
+            steps {
+                script {
+                    //启动容器
+                    sh ' docker run -p 80:80 --name nginx_tayrsi -d nginx_tayrsi:1.0'
+                }
+            }
+        }
 
 
 
                     
-                }
+    }
 
               
         
@@ -80,9 +80,9 @@ pipeline {
                 //         }
                 //     }
                 // }
-            }
+            // }
         // }
-    // }
+
 
     //构建后操作
     post {
@@ -110,4 +110,4 @@ pipeline {
             }
         }
     }
-
+}
