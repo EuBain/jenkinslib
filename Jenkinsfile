@@ -42,17 +42,30 @@ pipeline {
                                 // mvnHome = tool "m2"
                                 // println(mvnHome)
                                 // sh "${mvnHome}/bin/mvn --version"
-                                node {
-                                    checkout scm
-                                    def customImage = docker.build("nginx_tayrsi:1.0")
-                                    customImage.inside {
-                                        sh 'make test'
-                                    }
+                                sh """
+                                docker -t build nginx_tayrsi:1.0
+                                """
+                                
                                 }
                             }
                         }
                     }
+                 //启动
+                stage('Run'){
+                    steps {
+                        script {
+                            //启动容器
+                            sh ' docker run -p 80:80 --name nginx_tayrsi -d nginx_tayrsi:1.0'
+                        }
+                    }
                 }
+
+
+
+                    
+                }
+
+              
         
                 // //代码扫描
                 // stage("CodeScan"){
