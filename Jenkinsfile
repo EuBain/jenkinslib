@@ -57,7 +57,7 @@ pipeline {
             steps {
                 script {
                     //启动容器
-                    sh """ docker run -p 80:80 -v /etc/ssl/tayrsi:/etc/ssl/tayrsi --name nginx_tayrsi -d nginx_tayrsi:1.0
+                    sh """ docker run -p 80:80 -v /etc/ssl/tayrsi:/etc/ssl/ --name nginx_tayrsi -d nginx_tayrsi:1.0
                            pwd
                            cd /var/jenkins_home/ssl/tayrsi
                            ls
