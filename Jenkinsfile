@@ -8,8 +8,7 @@ pipeline {
     //               customWorkspace "${workspace}"   //指定运行工作目录（可选）
     //         }
     // }
-
-    // tools { nodejs "Node 16.20.0"}
+    tools { nodejs "Node 16.20.0"}
     // options {
     //     timestamps()  //日志会有时间
     //     skipDefaultCheckout()  //删除隐式checkout scm语句
@@ -19,20 +18,22 @@ pipeline {
 
     stages {
         //下载代码
-        stage("GetCode"){ //阶段名称
+        stage("git"){ //阶段名称
+
             steps{  //步骤
                 timeout(time:5, unit:"MINUTES"){   //步骤超时时间
                     script{ //填写运行代码
                         println('获取代码')
                         // println("${test}")
+                        dir ("${env.WORKSPACE}/project") {
+                            sh 'pwd'
+                        }
+                        sh 'pwd'
                         sh """
                         git version
                         docker -v
                         """
-                        
-                        // input id: '1', message: '你准备好了吗？', ok: '是的', parameters: [choice(choices: ['232', '333'], description: '''你有毛病
-// 我没毛病''', name: '1')]
-                        // input id: 'Test', message: '我们是否要继续？', ok: '是，继续吧！', parameters: [choice(choices: ['a', 'b'], description: '', name: 'test1')], submitter: 'lizeyang,admin'
+                        git credentialsId: 'GitHubSSH', url: 'git@github.com:EuBain/tayrsi.git'
                     }
                 }
             }
