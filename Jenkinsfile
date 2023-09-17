@@ -43,8 +43,8 @@ pipeline {
                         // println(mvnHome)
                         // sh "${mvnHome}/bin/mvn --version"
                         sh """
-                        whereis docker
-                        pwd
+                        docker remove -f nginx_tayrsi
+                        docker image rm -f nginx_tayrsi
                         docker build -t nginx_tayrsi:1.0 .
                         """
                         
@@ -57,7 +57,7 @@ pipeline {
             steps {
                 script {
                     //启动容器
-                    sh """ docker run -p 80:80 -v /etc/ssl/tayrsi:/etc/ssl/tayrsi --name nginx_tayrsi -d nginx_tayrsi:1.0
+                    sh """ docker run -p 80:80 -p 443:443 -v /etc/ssl/tayrsi:/etc/ssl/tayrsi --name nginx_tayrsi -d nginx_tayrsi:1.0
                            pwd
                            cd /var/jenkins_home/ssl/tayrsi
                            ls
