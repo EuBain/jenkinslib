@@ -43,7 +43,8 @@ pipeline {
                                 // println(mvnHome)
                                 // sh "${mvnHome}/bin/mvn --version"
                                 sh """
-                                docker build -t nginx_tayrsi:1.0
+                                pwd
+                                docker build -t nginx_tayrsi:1.0 .
                                 """
                                 
                                 }
