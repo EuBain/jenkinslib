@@ -61,7 +61,7 @@ pipeline {
                            pwd
                            cd /var/jenkins_home/ssl/tayrsi
                            ls
-                           docker cp /var/jenkins_home/ssl/tayrsi/ nginx_tayrsi:/etc/ssl/tayrsi
+                           docker cp /var/jenkins_home/ssl/tayrsi nginx_tayrsi:/etc/ssl/tayrsi
                            docker start nginx_tayrsi
                            """
                                                    
