@@ -45,9 +45,8 @@ pipeline {
                         sh """
                         docker remove -f nginx_tayrsi
                         docker image rm -f nginx_tayrsi
-                        docker build -t nginx_tayrsi:1.0 .
+                        docker build -t nginx_tayrsi:${BUILD_NUMBER} .
                         """
-                        
                         }
                     }
                 }
@@ -57,9 +56,10 @@ pipeline {
             steps {
                 script {
                     //启动容器
-                    sh """ docker run -p 80:80 -p 443:443 -v /home/ssl:/etc/nginx/ssl --name nginx_tayrsi -d nginx_tayrsi:1.0
-                           docker start nginx_tayrsi
-                           """
+                    sh """ 
+                    docker run -p 80:80 -p 443:443 -v /home/ssl:/etc/nginx/ssl --name nginx_tayrsi -d nginx_tayrsi:${BUILD_NUMBER}
+                    docker start nginx_tayrsi
+                    """
                 }
             }
         }
