@@ -43,6 +43,7 @@ pipeline {
                         // println(mvnHome)
                         // sh "${mvnHome}/bin/mvn --version"
                         sh """
+                        pnpm i
                         pnpm run build
                         docker remove -f nginx_master_react
                         docker image rm -f nginx_master_react
