@@ -42,7 +42,6 @@ pipeline {
                         // mvnHome = tool "m2"
                         // println(mvnHome)
                         // sh "${mvnHome}/bin/mvn --version"
-                        node -v
                         sh """
                         docker remove -f nginx_tayrsi
                         docker image rm -f nginx_tayrsi
