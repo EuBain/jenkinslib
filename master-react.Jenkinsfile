@@ -84,7 +84,6 @@ pipeline {
             // }
         // }
 
-
     //构建后操作
     post {
         always {
