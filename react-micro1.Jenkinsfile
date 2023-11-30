@@ -23,7 +23,7 @@ pipeline {
                 timeout(time:5, unit:"MINUTES"){   //步骤超时时间
                     script{ //填写运行代码
                         println('获取代码')
-                        git credentialsId: 'GitHubSSH', url: 'git@github.com:EuBain/react_micro1.git'
+                        git credentialsId: 'GitHubSSH', url: 'git@github.com:EuBain/react-micro1.git'
                     }
                 }
             }
