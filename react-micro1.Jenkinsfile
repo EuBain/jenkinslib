@@ -43,6 +43,8 @@ pipeline {
                         // println(mvnHome)
                         // sh "${mvnHome}/bin/mvn --version"
                         sh """
+                        node -v
+                        pnpm config list
                         pnpm i
                         pnpm run build
                         docker remove -f nginx_react_micro1
