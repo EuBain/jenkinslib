@@ -8,7 +8,7 @@ pipeline {
     //               customWorkspace "${workspace}"   //指定运行工作目录（可选）
     //         }
     // }
-    tools { nodejs "Node 18.12.0"}
+    tools { nodejs "Node 18.16.0"}
     // options {
     //     timestamps()  //日志会有时间
     //     skipDefaultCheckout()  //删除隐式checkout scm语句
